@@ -1,5 +1,5 @@
+// import 'package:flame_codelab_1/src/config.dart';
 import 'package:flame/components.dart';
-import 'package:flame_codelab_1/src/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/effects.dart';
@@ -36,38 +36,38 @@ class Ball extends CircleComponent
 
   @override
   void onCollisionStart(
-      Set<Vector2> intersecPoints, PositionComponent otherObj) {
-    super.onCollisionStart(intersecPoints, otherObj);
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollisionStart(intersectionPoints, other);
 
-    if (otherObj is PlayArea) {
-      if (intersecPoints.first.y <= 0) {
+    if (other is PlayArea) {
+      if (intersectionPoints.first.y <= 0) {
         velocity.y = -velocity.y;
-      } else if (intersecPoints.first.x <= 0) {
+      } else if (intersectionPoints.first.x <= 0) {
         velocity.x = -velocity.x;
-      } else if (intersecPoints.first.x >= game.width) {
+      } else if (intersectionPoints.first.x >= game.width) {
         velocity.x = -velocity.x;
-      } else if (intersecPoints.first.y >= game.height) {
+      } else if (intersectionPoints.first.y >= game.height) {
         add(RemoveEffect(
             delay: .35,
             onComplete: () {
               game.playState = GameState.gameOver;
             }));
       }
-    } else if (otherObj is Bat) {
+    } else if (other is Bat) {
       velocity.y = -velocity.y;
       velocity.x = velocity.x +
-          (position.x - otherObj.position.x) /
-              otherObj.size.x *
+          (position.x - other.position.x) /
+              other.size.x *
               game.width *
               .3;
-    } else if (otherObj is Brick) {
-      if (position.y < otherObj.position.y - otherObj.size.y / 2) {
+    } else if (other is Brick) {
+      if (position.y < other.position.y - other.size.y / 2) {
         velocity.y = -velocity.y;
-      } else if (position.y > otherObj.position.y + otherObj.size.y / 2) {
+      } else if (position.y > other.position.y + other.size.y / 2) {
         velocity.y = -velocity.y;
-      } else if (position.x < otherObj.position.x) {
+      } else if (position.x < other.position.x) {
         velocity.x = -velocity.x;
-      } else if (position.x > otherObj.position.x) {
+      } else if (position.x > other.position.x) {
         velocity.x = -velocity.x;
       }
       velocity.setFrom(velocity * difficultyModifier);
