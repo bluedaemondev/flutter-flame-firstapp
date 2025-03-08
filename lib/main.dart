@@ -1,8 +1,6 @@
-import 'package:flame/game.dart';
+import 'package:flame_codelab_1/src/widgets/game_app.dart';
 import 'package:flutter/material.dart';
-import 'src/breakout_game.dart';
 
 void main() {
-  final game = BrickBreaker();
-  runApp(GameWidget(game: game));
+  runApp(const GameApp());
 }
