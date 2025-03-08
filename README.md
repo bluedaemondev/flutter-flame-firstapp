@@ -1,3 +1,3 @@
-# flame_codelab_1
+# Flame engine Breakout project
 
-A new Flutter project.
+Tutorial from google codelabs. To be upgraded with https://codelabs.developers.google.com/codelabs/flutter-next-gen-uis
